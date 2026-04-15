@@ -16,16 +16,27 @@ const Login = () => {
 
     try {
       // 1. Lấy URL từ biến môi trường (http://localhost:5000/api)
-      const apiUrl = import.meta.env.VITE_API_URL;
+      // const apiUrl = import.meta.env.VITE_API_URL;
 
       // 2. Gọi lên Backend
-      const response = await fetch(`${apiUrl}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+      // const response = await fetch(`${apiUrl}/auth/login`, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ username, password }),
+      // });
 
-      const data = await response.json();
+      // const data = await response.json();
+
+      //Giả lập response từ Backend (xóa đoạn này khi có backend thật)
+      const response = { ok: false }; // Giả lập response thành công
+      if(username === "admin" && password === "admin123") {
+        response.ok = true;
+      }
+      const data = {
+        user: {"id":1,"username":"admin","name":"Admin May Mặc","role":"admin"},
+        token: "fake-jwt-token",
+        message: "Đăng nhập thành công!"
+      }
 
       if (response.ok) {
         // Đăng nhập ngon lành -> Lưu data và nhảy vào trong
