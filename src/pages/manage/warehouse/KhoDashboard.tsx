@@ -6,7 +6,7 @@ import {
   Truck, Box, ClipboardList, Zap,
   X, Search, Check,
 } from "lucide-react";
-import { MOCK_DON_HANG, TRANG_THAI_DON_CONFIG} from "../shopping/TheoDonHang/orderData";
+import { MOCK_DON_HANG, TRANG_THAI_DON_CONFIG,} from "../shopping/TheoDonHang/orderData";
 //  dinh_dang_tien, type DonHang 
 
 // ─── Mock data kho ────────────────────────────────────────────────────────────
@@ -144,21 +144,30 @@ function ScanBar({ onScan }: { onScan: (ma: string) => void }) {
 
 // ─── Funnel card ──────────────────────────────────────────────────────────────
 
-function FunnelCard({ nhan, so_luong, mau, nen, icon: Icon, canh_bao }: {
-  nhan: string; so_luong: number; mau: string; nen: string;
+function FunnelCard({ nhan, so_luong, mau, icon: Icon, canh_bao }: {
+  nhan: string; so_luong: number; mau: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any; canh_bao?: boolean;
 }) {
   return (
-    <div className="flex-1 min-w-0 relative">
-      <div className={`p-3 rounded-xl text-center transition-all ${canh_bao ? "animate-pulse" : ""}`}
-        style={{ background: canh_bao ? mau + "20" : nen, border: `1px solid ${canh_bao ? mau : mau + "30"}` }}>
-        <Icon size={13} className="mx-auto mb-1.5" style={{ color: mau }} />
-        <p className="text-2xl font-black leading-none mb-1"
-          style={{ color: canh_bao ? mau : "white" }}>{so_luong}</p>
-        <p className="text-[9px] font-bold leading-tight" style={{ color: canh_bao ? mau : "#64748b" }}>{nhan}</p>
-        {canh_bao && (
-          <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full" style={{ background: "#ef4444" }} />
+    <div className="flex-1 min-w-0 text-center">
+      <div className="relative inline-flex flex-col items-center gap-1.5 w-full">
+        {/* Số lượng — to, nổi bật */}
+        <div className={`text-3xl font-black leading-none ${canh_bao ? "animate-pulse" : ""}`}
+          style={{ color: canh_bao ? mau : so_luong === 0 ? "#334155" : "white" }}>
+          {so_luong}
+        </div>
+        {/* Icon + nhãn */}
+        <div className="flex items-center gap-1">
+          <Icon size={11} style={{ color: so_luong === 0 ? "#334155" : mau }} />
+          <p className="text-[10px] font-medium leading-tight whitespace-nowrap"
+            style={{ color: so_luong === 0 ? "#334155" : "#94a3b8" }}>
+            {nhan}
+          </p>
+        </div>
+        {/* Dot cảnh báo */}
+        {canh_bao && so_luong > 0 && (
+          <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full" style={{ background: mau }} />
         )}
       </div>
     </div>
@@ -167,8 +176,8 @@ function FunnelCard({ nhan, so_luong, mau, nen, icon: Icon, canh_bao }: {
 
 function FunnelArrow() {
   return (
-    <div className="flex items-center flex-shrink-0 px-0.5 mt-1">
-      <ArrowRight size={14} style={{ color: "#334155" }} />
+    <div className="flex items-center flex-shrink-0 pb-4 px-1">
+      <ArrowRight size={12} style={{ color: "#1e293b" }} />
     </div>
   );
 }
@@ -276,66 +285,63 @@ export default function KhoDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
         {/* Luồng Xuất */}
-        <div className="rounded-2xl p-4" style={{ background: "#0f172a", border: "1px solid #10b98130" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full" style={{ background: "#10b981" }} />
+        <div className="rounded-2xl p-4" style={{ background: "#0f172a", border: "1px solid #1e293b", borderTop: "2px solid #10b981" }}>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#10b981" }} />
             <p className="text-xs font-black uppercase tracking-widest" style={{ color: "#10b981" }}>
               Luồng Xuất — Đơn hàng
             </p>
           </div>
-          <div className="flex items-center gap-1">
-            <FunnelCard nhan="Đơn mới" so_luong={luan_xuat.don_moi} mau="#f59e0b" nen="#78350f15" icon={ClipboardList} canh_bao={luan_xuat.don_moi > 10} />
+          <div className="flex items-center gap-0.5">
+            <FunnelCard nhan="Đơn mới"    so_luong={luan_xuat.don_moi}         mau="#94a3b8" icon={ClipboardList} canh_bao={luan_xuat.don_moi > 10} />
             <FunnelArrow />
-            <FunnelCard nhan="Đang nhặt" so_luong={luan_xuat.dang_nhat_hang} mau="#38bdf8" nen="#0c435415" icon={Search} />
+            <FunnelCard nhan="Đang nhặt"  so_luong={luan_xuat.dang_nhat_hang}  mau="#94a3b8" icon={Search} />
             <FunnelArrow />
-            <FunnelCard nhan="Đóng gói" so_luong={luan_xuat.dang_dong_goi} mau="#a78bfa" nen="#4c1d9515" icon={Box} />
+            <FunnelCard nhan="Đóng gói"   so_luong={luan_xuat.dang_dong_goi}   mau="#94a3b8" icon={Box} />
             <FunnelArrow />
-            <FunnelCard nhan="Chờ xe lấy" so_luong={luan_xuat.cho_xe_lay} mau="#10b981" nen="#06472515" icon={Truck} canh_bao={luan_xuat.cho_xe_lay > 5} />
+            <FunnelCard nhan="Chờ xe lấy" so_luong={luan_xuat.cho_xe_lay}      mau="#f59e0b" icon={Truck} canh_bao={luan_xuat.cho_xe_lay > 5} />
           </div>
           {luan_xuat.cho_xe_lay > 5 && (
-            <p className="text-[10px] mt-2 flex items-center gap-1" style={{ color: "#f59e0b" }}>
+            <p className="text-[10px] mt-3 flex items-center gap-1.5 pt-3 border-t" style={{ borderColor: "#1e293b", color: "#f59e0b" }}>
               <AlertTriangle size={10} /> {luan_xuat.cho_xe_lay} đơn chờ ĐVVC — cần gọi hãng vận chuyển
             </p>
           )}
         </div>
 
         {/* Luồng Nhập */}
-        <div className="rounded-2xl p-4" style={{ background: "#0f172a", border: "1px solid #38bdf830" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full" style={{ background: "#38bdf8" }} />
+        <div className="rounded-2xl p-4" style={{ background: "#0f172a", border: "1px solid #1e293b", borderTop: "2px solid #38bdf8" }}>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#38bdf8" }} />
             <p className="text-xs font-black uppercase tracking-widest" style={{ color: "#38bdf8" }}>
               Luồng Nhập — Lô hàng
             </p>
           </div>
-          <div className="flex items-center gap-1">
-            <FunnelCard nhan="Sắp về" so_luong={luan_nhap.sap_ve} mau="#38bdf8" nen="#0c435415" icon={Truck} />
+          <div className="flex items-center gap-0.5 mb-4">
+            <FunnelCard nhan="Sắp về"    so_luong={luan_nhap.sap_ve}     mau="#94a3b8" icon={Truck} />
             <FunnelArrow />
-            <FunnelCard nhan="Đang kiểm" so_luong={luan_nhap.dang_kiem} mau="#a78bfa" nen="#4c1d9515" icon={ClipboardList} canh_bao={luan_nhap.dang_kiem > 0} />
+            <FunnelCard nhan="Đang kiểm" so_luong={luan_nhap.dang_kiem}  mau="#f59e0b" icon={ClipboardList} canh_bao={luan_nhap.dang_kiem > 0} />
             <FunnelArrow />
-            <FunnelCard nhan="Chờ cất kệ" so_luong={luan_nhap.cho_cat_ke} mau="#f59e0b" nen="#78350f15" icon={Warehouse} canh_bao={luan_nhap.cho_cat_ke > 0} />
+            <FunnelCard nhan="Chờ cất kệ" so_luong={luan_nhap.cho_cat_ke} mau="#f97316" icon={Warehouse} canh_bao={luan_nhap.cho_cat_ke > 0} />
           </div>
           {luan_nhap.cho_cat_ke > 0 && (
-            <p className="text-[10px] mt-2 flex items-center gap-1" style={{ color: "#f59e0b" }}>
+            <p className="text-[10px] mb-3 flex items-center gap-1.5" style={{ color: "#f97316" }}>
               <AlertTriangle size={10} /> {luan_nhap.cho_cat_ke} lô đang nằm sàn — cần cất lên kệ
             </p>
           )}
           {/* Chi tiết lô hàng */}
-          <div className="mt-3 space-y-1.5">
+          <div className="space-y-1.5 pt-3 border-t" style={{ borderColor: "#1e293b" }}>
             {MOCK_LO_HANG.map(lo => {
-              const mau_tt = lo.trang_thai === "sap_ve" ? "#38bdf8" : lo.trang_thai === "da_nhan_dang_kiem" ? "#a78bfa" : "#f59e0b";
+              const mau_tt = lo.trang_thai === "sap_ve" ? "#475569" : lo.trang_thai === "da_nhan_dang_kiem" ? "#f59e0b" : "#f97316";
               const nhan_tt = lo.trang_thai === "sap_ve" ? "Sắp về" : lo.trang_thai === "da_nhan_dang_kiem" ? "Đang kiểm" : "Chờ cất kệ";
               return (
-                <div key={lo.id} className="flex items-center gap-2 px-2.5 py-2 rounded-lg"
+                <div key={lo.id} className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg"
                   style={{ background: "#1e293b" }}>
                   <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: mau_tt }} />
                   <div className="flex-1 min-w-0">
                     <p className="text-[10px] font-bold text-white truncate">{lo.ncc}</p>
                     <p className="text-[9px]" style={{ color: "#475569" }}>{lo.ma_lo} · {lo.so_luong} SP</p>
                   </div>
-                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0"
-                    style={{ background: mau_tt + "20", color: mau_tt }}>
-                    {nhan_tt}
-                  </span>
+                  <span className="text-[9px] font-bold flex-shrink-0" style={{ color: mau_tt }}>{nhan_tt}</span>
                 </div>
               );
             })}
@@ -343,28 +349,28 @@ export default function KhoDashboard() {
         </div>
 
         {/* Luồng Sự Cố */}
-        <div className="rounded-2xl p-4" style={{ background: "#0f172a", border: "1px solid #ef444430" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#ef4444" }} />
+        <div className="rounded-2xl p-4" style={{ background: "#0f172a", border: "1px solid #1e293b", borderTop: "2px solid #ef4444" }}>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#ef4444" }} />
             <p className="text-xs font-black uppercase tracking-widest" style={{ color: "#ef4444" }}>
               Luồng Sự Cố — Cần xử lý
             </p>
           </div>
-          <div className="flex items-center gap-1 mb-3">
-            <FunnelCard nhan="Hàng hoàn về" so_luong={luan_su_co.hang_hoan_ve} mau="#f97316" nen="#7c2d1215" icon={RotateCcw} canh_bao={luan_su_co.hang_hoan_ve > 0} />
+          <div className="flex items-center gap-0.5 mb-4">
+            <FunnelCard nhan="Hoàn về"  so_luong={luan_su_co.hang_hoan_ve} mau="#f97316" icon={RotateCcw} canh_bao={luan_su_co.hang_hoan_ve > 0} />
             <FunnelArrow />
-            <FunnelCard nhan="Hàng lỗi / trả xưởng" so_luong={luan_su_co.hang_loi} mau="#fb7185" nen="#88152515" icon={AlertTriangle} canh_bao={luan_su_co.hang_loi > 0} />
+            <FunnelCard nhan="Lỗi / trả xưởng" so_luong={luan_su_co.hang_loi} mau="#ef4444" icon={AlertTriangle} canh_bao={luan_su_co.hang_loi > 0} />
           </div>
           {/* Danh sách hàng hoàn / lỗi */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 pt-3 border-t" style={{ borderColor: "#1e293b" }}>
             {MOCK_DON_HANG
               .filter(o => ["giao_that_bai", "tra_hang_loi"].includes(o.trang_thai_don))
               .slice(0, 4)
               .map(don => {
                 const la_loi = don.trang_thai_don === "tra_hang_loi";
-                const mau = la_loi ? "#fb7185" : "#f97316";
+                const mau = la_loi ? "#ef4444" : "#f97316";
                 return (
-                  <div key={don.id} className="flex items-center gap-2 px-2.5 py-2 rounded-lg"
+                  <div key={don.id} className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg"
                     style={{ background: "#1e293b" }}>
                     <AlertTriangle size={10} className="flex-shrink-0" style={{ color: mau }} />
                     <div className="flex-1 min-w-0">
