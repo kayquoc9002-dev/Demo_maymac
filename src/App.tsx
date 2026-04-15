@@ -18,7 +18,9 @@ const DoiTacvaNhaPhanPhoi = lazy(
 const Kho = lazy(() => import("./pages/manage/warehouse/KhoDashboard"));
 
 // ─── Bán hàng (nhân viên) ────────────────────────────────
-const TheoDonHang = lazy(() => import("./pages/manage/shopping/TheoDonHang/TongQuanDonHang"));
+const TheoDonHang = lazy(
+  () => import("./pages/manage/shopping/TheoDonHang/TongQuanDonHang"),
+);
 const DoanhThu = lazy(() => import("./pages/manage/shopping/DoanhThu"));
 const POSBanLe = lazy(() => import("./pages/manage/shopping/POS/POSPage"));
 
@@ -26,7 +28,6 @@ const POSBanLe = lazy(() => import("./pages/manage/shopping/POS/POSPage"));
 const ShopLayout = lazy(() => import("./layouts/ShopLayout"));
 const ShopProducts = lazy(() => import("./pages/shop/ShopProducts"));
 const ShopCart = lazy(() => import("./pages/shop/ShopCart"));
-
 
 const ShopSkeleton = () => (
   <div
@@ -75,12 +76,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* TRANG CHỦ */}
-        <Route
-          path="/"
-          element={
-              <ShopLayout />
-          }
-        >
+        <Route path="/" element={<ShopLayout />}>
           <Route
             index
             element={
@@ -174,7 +170,7 @@ function App() {
             />
           </Route>
           {/* Cụm kho */}
-          <Route path="kho">
+          {/* <Route path="kho">
             <Route
               path="dashboard"
               element={
@@ -183,7 +179,16 @@ function App() {
                 </Suspense>
               }
             />
-          </Route>
+          </Route> */}
+          <Route
+            path="kho"
+            element={
+              <Suspense fallback={<PageSkeleton />}>
+                <Kho />
+              </Suspense>
+            }
+          />
+
           {/* Cụm Nhân sự */}
           <Route path="nhan-su">
             <Route
