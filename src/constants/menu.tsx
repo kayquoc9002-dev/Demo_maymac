@@ -16,8 +16,6 @@ import {
   LogOut,
   Handshake,
   QrCode,
-  FileText,
-  Building2,
   ClipboardList,
   TrendingUp,
 } from "lucide-react";
@@ -70,7 +68,24 @@ export const SIDEBAR_TOP_MENU = [
       },
     ],
   },
-  { id: "kho", label: "Kho", icon: <Box size={20} />, path: "/manage/kho" },
+  {
+    id: "kho",
+    label: "Kho",
+    icon: <Box size={20} />,
+    path: "/manage/kho",
+    subItems: [
+      {
+        label: "Tổng quan kho",
+        path: "/manage/kho/dashboard",
+        icon: <ClipboardList size={14} />,
+      },
+      {
+        label: "Nhập/Xuất kho",
+        path: "/manage/kho/nhap-xuat",
+        icon: <TrendingUp size={14} />,
+      }
+    ],
+  },
   {
     id: "danh-muc",
     label: "Danh mục sản phẩm",

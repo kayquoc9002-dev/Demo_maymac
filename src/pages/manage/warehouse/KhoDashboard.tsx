@@ -186,7 +186,7 @@ function FunnelArrow() {
 
 export default function KhoDashboard() {
   const [tab_canh_bao, setTabCanhBao] = useState<"sap_het" | "ton_dong">("sap_het");
-  const [setMaQует] = useState<string | null>(null);
+  const [ma_quet, setMaQuet] = useState<string | null>(null);
 
   // Tính toán từ MOCK_DON_HANG
   const luan_xuat = useMemo(() => ({
@@ -241,7 +241,7 @@ export default function KhoDashboard() {
 
       {/* ── Scan Bar + Action Buttons ─────────────────────── */}
       <div className="rounded-2xl p-4 space-y-3" style={{ background: "#0f172a", border: "1px solid #1e293b" }}>
-        <ScanBar onScan={setMaQует} />
+        <ScanBar onScan={setMaQuet} />
         <div className="flex items-center gap-2 flex-wrap">
           {[
             { nhan: "Nhập kho",      icon: PackagePlus,  mau: "#10b981", nen: "#06472520" },

@@ -236,7 +236,7 @@ export default function ShopLayout() {
             </div>
           ))}
         </div>
-        <div style={{ borderTop: "1px solid #3d2515" }} className="text-center text-xs py-4" style={{ color: "#6b5344" }}>
+        <div style={{ borderTop: "1px solid #3d2515", color: "#6b5344" }} className="text-center text-xs py-4">
           © 2026 FPTUShop · Doanh nhân FPTU
         </div>
       </footer>

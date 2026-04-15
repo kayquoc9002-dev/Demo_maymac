@@ -14,8 +14,9 @@ const DoiTacvaNhaPhanPhoi = lazy(
   () => import("./pages/manage/service/DoiTacvaNhaPhanPhoi"),
 );
 
-// ─── Bán hàng (nhân viên) ────────────────────────────────
+// ─── Quản lý kho ────────────────────────────────
 const Kho = lazy(() => import("./pages/manage/warehouse/KhoDashboard"));
+const NhapXuatKho = lazy(() => import("./pages/manage/warehouse/XuatNhapKho"));
 
 // ─── Bán hàng (nhân viên) ────────────────────────────────
 const TheoDonHang = lazy(
@@ -170,7 +171,7 @@ function App() {
             />
           </Route>
           {/* Cụm kho */}
-          {/* <Route path="kho">
+          <Route path="kho">
             <Route
               path="dashboard"
               element={
@@ -179,15 +180,15 @@ function App() {
                 </Suspense>
               }
             />
-          </Route> */}
-          <Route
-            path="kho"
-            element={
-              <Suspense fallback={<PageSkeleton />}>
-                <Kho />
-              </Suspense>
-            }
-          />
+            <Route
+              path="nhap-xuat"
+              element={
+                <Suspense fallback={<PageSkeleton />}>
+                  <NhapXuatKho />
+                </Suspense>
+              }
+            />
+          </Route>
 
           {/* Cụm Nhân sự */}
           <Route path="nhan-su">

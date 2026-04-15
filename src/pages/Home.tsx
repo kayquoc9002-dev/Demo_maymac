@@ -384,7 +384,7 @@ export default function Home() {
                   >
                     {p.ten_sp}
                   </p>
-                  <StarRow rating={p.danh_gia} count={p.luot_danh_gia} />
+                  <StarRow rating={p.danh_gia ?? 0} count={p.luot_danh_gia ?? 0} />
                   <p
                     className="text-[13px] line-through"
                     style={{ color: "gray" }}
@@ -398,7 +398,7 @@ export default function Home() {
                     {fmt(minPrice)}
                   </p>
                   <p className="text-[9px] mt-0.5" style={{ color: "#a89070" }}>
-                    Đã bán {fmt2(p.luot_ban)}
+                    Đã bán {fmt2(p.luot_ban ?? 0)}
                   </p>
                 </div>
               </Link>
@@ -462,7 +462,7 @@ export default function Home() {
                   >
                     {p.ten_sp}
                   </p>
-                  <StarRow rating={p.danh_gia} count={p.luot_danh_gia} />
+                  <StarRow rating={p.danh_gia ?? 0} count={p.luot_danh_gia ?? 0} />
                   <p
                     className="text-[13px] line-through"
                     style={{ color: "gray" }}
