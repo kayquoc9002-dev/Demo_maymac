@@ -186,7 +186,7 @@ function FunnelArrow() {
 
 export default function KhoDashboard() {
   const [tab_canh_bao, setTabCanhBao] = useState<"sap_het" | "ton_dong">("sap_het");
-  const [ma_quet, setMaQuet] = useState<string | null>(null);
+  const [ , setMaQuet] = useState<string | null>(null);
 
   // Tính toán từ MOCK_DON_HANG
   const luan_xuat = useMemo(() => ({
