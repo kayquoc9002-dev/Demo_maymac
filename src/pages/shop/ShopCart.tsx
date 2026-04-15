@@ -241,6 +241,7 @@ export default function ShopCart() {
                 ].map(({ key, label, placeholder }) => (
                   <div key={key}>
                     <label className="text-xs font-bold block mb-1" style={{ color: "#6b5344" }}>{label}</label>
+                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     <input value={(info as any)[key]} onChange={e => setInfo(i => ({ ...i, [key]: e.target.value }))}
                       placeholder={placeholder}
                       className="w-full px-3 py-2 rounded-xl text-sm outline-none"
@@ -266,6 +267,7 @@ export default function ShopCart() {
                     ].map(({ key, label, placeholder }) => (
                       <div key={key} className="mb-2">
                         <label className="text-xs font-bold block mb-1" style={{ color: "#6b5344" }}>{label}</label>
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                         <input value={(info as any)[key] ?? ""} onChange={e => setInfo(i => ({ ...i, [key]: e.target.value }))}
                           placeholder={placeholder}
                           className="w-full px-3 py-2 rounded-xl text-sm outline-none"

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import {
-  Search, SlidersHorizontal, Star, Heart, ShoppingCart,
+  Search, SlidersHorizontal, Heart, ShoppingCart,
   X, ChevronRight, Plus, Minus, Truck, RefreshCw, ShieldCheck, Package,
 } from "lucide-react";
 import {

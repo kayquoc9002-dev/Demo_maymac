@@ -118,6 +118,7 @@ const MOCK_ORDERS: DonHang[] = [
 ];
 
 // ─── Config ───────────────────────────────────────────────
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const TRANG_THAI_CONFIG: Record<TrangThai, { label: string; color: string; bg: string; icon: any; nextStates: TrangThai[] }> = {
   cho_xac_nhan: { label: "Chờ xác nhận", color: "#f59e0b", bg: "#fef3c7", icon: Clock,   nextStates: ["dang_dong_goi", "da_huy"] },
   dang_dong_goi:{ label: "Đang đóng gói", color: "#3b82f6", bg: "#dbeafe", icon: Package, nextStates: ["dang_giao",     "da_huy"] },
@@ -410,6 +411,7 @@ export default function TheoDonHang() {
         </div>
 
         {/* Filter trạng thái */}
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <select value={filterTT} onChange={e => { setFilterTT(e.target.value as any); setPage(1); }}
           className="px-3 py-2 rounded-xl text-xs font-medium outline-none"
           style={{ background: "#1e293b", border: "1px solid #334155", color: "#94a3b8" }}>
@@ -420,6 +422,7 @@ export default function TheoDonHang() {
         </select>
 
         {/* Filter loại khách */}
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <select value={filterLoai} onChange={e => { setFilterLoai(e.target.value as any); setPage(1); }}
           className="px-3 py-2 rounded-xl text-xs font-medium outline-none"
           style={{ background: "#1e293b", border: "1px solid #334155", color: "#94a3b8" }}>

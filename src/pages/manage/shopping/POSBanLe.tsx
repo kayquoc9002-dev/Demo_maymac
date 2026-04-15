@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, Plus, Minus, Trash2, CreditCard,
-  Banknote, QrCode, ShoppingCart, CheckCircle, Printer, Shirt,
+  Banknote, QrCode, ShoppingCart, CheckCircle, Printer,
 } from "lucide-react";
 
 interface Product { id:number; ma:string; ten:string; gia:number; ton:number; loai:string; donVi:string; }

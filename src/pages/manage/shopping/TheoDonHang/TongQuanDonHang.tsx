@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import {
   Clock, Package, Truck, AlertTriangle, RotateCcw,
   CheckCircle, Banknote, CreditCard, PhoneCall,
@@ -11,7 +11,7 @@ import {
   dinh_dang_tien,
   dinh_dang_tien_ngan,
   dinh_dang_ngay_ngan,
-  cap_nhat_trang_thai_don,
+  // cap_nhat_trang_thai_don,
   type DonHang,
   type VaiTro,
 } from "./orderData";
@@ -24,6 +24,7 @@ const VAI_TRO_HIEN_TAI: VaiTro = "ke_toan";
 
 interface StatCardProps {
   nhan: string; gia_tri: string | number; mo_ta?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any; mau: string; nen: string;
   ds_don?: DonHang[];   // nếu có → bấm được, mở modal danh sách
   vai_tro?: VaiTro;
@@ -138,6 +139,7 @@ function DonCanXuLyCard({ don, vai_tro, onCapNhat }: {
 // ─── Section helper ───────────────────────────────────────────────────────────
 
 function Section({ icon: Icon, nhan, mau, children, count }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any; nhan: string; mau: string; count: number;
   children: React.ReactNode;
 }) {
@@ -363,13 +365,15 @@ function TongQuanAdmin({ ds_don, onCapNhat }: { ds_don: DonHang[]; onCapNhat: (d
   const cho_xu_ly      = ds_don.filter(o => o.trang_thai_don === "cho_xu_ly");
   const dang_giao      = ds_don.filter(o => o.trang_thai_don === "dang_van_chuyen");
   const hoan_thanh     = ds_don.filter(o => o.trang_thai_don === "hoan_thanh");
-  const da_huy         = ds_don.filter(o => o.trang_thai_don === "da_huy");
+  // const da_huy         = ds_don.filter(o => o.trang_thai_don === "da_huy");
   const chua_thanh_toan = ds_don.filter(o => o.trang_thai_thanh_toan === "chua_thanh_toan" && o.trang_thai_don !== "da_huy");
   const da_coc          = ds_don.filter(o => o.trang_thai_thanh_toan === "da_coc");
   const can_xu_ly      = ds_don.filter(o =>
     ["cho_xu_ly","dang_san_xuat","cho_giao_van_chuyen","tra_hang_loi","giao_that_bai"].includes(o.trang_thai_don)
   );
   const tong_con_no    = ds_don.filter(o => o.trang_thai_don !== "da_huy").reduce((s, o) => s + o.con_no, 0);
+
+  const [mo_modal, setMoModal] = useState(false);
 
   const kenh_stats = (Object.keys(KENH_BAN_CONFIG) as (keyof typeof KENH_BAN_CONFIG)[])
     .map(k => ({
@@ -443,7 +447,7 @@ function TongQuanAdmin({ ds_don, onCapNhat }: { ds_don: DonHang[]; onCapNhat: (d
         </div>
         <div className="space-y-2.5">
           {kenh_stats.map(k => {
-            const [mo_modal, setMoModal] = useState(false);
+            // const [mo_modal, setMoModal] = useState(false);
             const max_dt = Math.max(...kenh_stats.map(x => x.doanh_thu), 1);
             const pct    = Math.round(k.doanh_thu / max_dt * 100);
             return (

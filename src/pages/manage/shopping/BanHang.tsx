@@ -1,11 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ShoppingCart, Package, FileText, ClipboardList,
   Search, Plus, Minus, Trash2, CreditCard, Banknote,
   QrCode, ChevronRight, Tag, Users, TrendingUp,
   CheckCircle, Clock, XCircle, Printer, Download,
-  PercentIcon, Building2, Phone, MapPin, Shirt,
+  Building2, Phone, MapPin, Shirt
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────
@@ -410,7 +410,7 @@ const DonLeView = () => {
 // ĐƠN SỈ VIEW
 // ═══════════════════════════════════════════════════════════
 const DonSiView = () => {
-  const [khachHang, setKH] = useState(MOCK_CUSTOMERS[1]);
+  const [khachHang] = useState(MOCK_CUSTOMERS[1]);
   const [items, setItems]  = useState<(CartItem & {chieuKhau:number})[]>([]);
   const [search, setSearch]= useState("");
 

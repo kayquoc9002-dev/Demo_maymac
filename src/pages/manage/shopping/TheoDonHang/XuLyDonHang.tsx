@@ -324,6 +324,7 @@ export default function XuLyDonHang() {
             {[
               {
                 nhan: "Trạng thái đơn", gia_tri: tt_don,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 doi: (v: any) => { setTtDon(v); setTrang(1); },
                 options: [
                   { gia_tri: "tat_ca", nhan: "Tất cả đơn" },
@@ -332,6 +333,7 @@ export default function XuLyDonHang() {
               },
               {
                 nhan: "Trạng thái TT", gia_tri: tt_tt,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 doi: (v: any) => { setTtTT(v); setTrang(1); },
                 options: [
                   { gia_tri: "tat_ca", nhan: "Tất cả TT" },
@@ -340,6 +342,7 @@ export default function XuLyDonHang() {
               },
               {
                 nhan: "Kênh bán", gia_tri: kenh,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 doi: (v: any) => { setKenh(v); setTrang(1); },
                 options: [
                   { gia_tri: "tat_ca", nhan: "Tất cả kênh" },
@@ -348,6 +351,7 @@ export default function XuLyDonHang() {
               },
               {
                 nhan: "Loại khách", gia_tri: loai_khach,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 doi: (v: any) => { setLoaiKhach(v); setTrang(1); },
                 options: [
                   { gia_tri: "tat_ca", nhan: "Lẻ + Sỉ" },

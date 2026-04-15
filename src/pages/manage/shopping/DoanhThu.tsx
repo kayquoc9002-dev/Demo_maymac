@@ -36,7 +36,7 @@ const loc_theo_tg = (don: DonHang, khoang: KhoangThoiGian, tu: string, den: stri
   return true;
 };
 
-type KyBaoCao = "thang_nay" | "thang_truoc" | "quy_nay" | "nam_nay";
+// type KyBaoCao = "thang_nay" | "thang_truoc" | "quy_nay" | "nam_nay";
 
 // ─── Mini bar chart ───────────────────────────────────────
 function BarChart({ data, color = "#3b82f6", height = 80 }: {

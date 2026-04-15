@@ -465,6 +465,7 @@ export function ModalDanhSach({ tieu_de, mau, ds_don, vai_tro, onClose, onCapNha
 
           {/* Lọc TT thanh toán — ẩn với kho */}
           {vai_tro !== "kho" && (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             <select value={tt_tt} onChange={e => { setTtTT(e.target.value as any); setTrang(1); }}
               className="px-2 py-2 rounded-xl text-xs outline-none"
               style={{ background: "#1e293b", border: "1px solid #334155", color: "#94a3b8" }}>
@@ -476,7 +477,9 @@ export function ModalDanhSach({ tieu_de, mau, ds_don, vai_tro, onClose, onCapNha
           )}
 
           {/* Lọc kênh */}
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <select value={kenh} onChange={e => { setKenh(e.target.value as any); setTrang(1); }}
+          
             className="px-2 py-2 rounded-xl text-xs outline-none"
             style={{ background: "#1e293b", border: "1px solid #334155", color: "#94a3b8" }}>
             <option value="tat_ca">Tất cả kênh</option>
@@ -500,7 +503,7 @@ export function ModalDanhSach({ tieu_de, mau, ds_don, vai_tro, onClose, onCapNha
               <p className="text-sm" style={{ color: "#475569" }}>Không có đơn phù hợp</p>
             </div>
           ) : ds_hien.map((don, idx) => {
-            const cfg_don = TRANG_THAI_DON_CONFIG[don.trang_thai_don];
+            // const cfg_don = TRANG_THAI_DON_CONFIG[don.trang_thai_don];
             const kenh_cfg = KENH_BAN_CONFIG[don.kenh_ban];
             return (
               <button

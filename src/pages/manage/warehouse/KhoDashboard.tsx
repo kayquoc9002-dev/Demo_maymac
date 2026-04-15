@@ -6,7 +6,8 @@ import {
   Truck, Box, ClipboardList, Zap,
   X, Search, Check,
 } from "lucide-react";
-import { MOCK_DON_HANG, TRANG_THAI_DON_CONFIG, dinh_dang_tien, type DonHang } from "../shopping/TheoDonHang/orderData";
+import { MOCK_DON_HANG, TRANG_THAI_DON_CONFIG} from "../shopping/TheoDonHang/orderData";
+//  dinh_dang_tien, type DonHang 
 
 // ─── Mock data kho ────────────────────────────────────────────────────────────
 
@@ -145,6 +146,7 @@ function ScanBar({ onScan }: { onScan: (ma: string) => void }) {
 
 function FunnelCard({ nhan, so_luong, mau, nen, icon: Icon, canh_bao }: {
   nhan: string; so_luong: number; mau: string; nen: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any; canh_bao?: boolean;
 }) {
   return (
@@ -175,7 +177,7 @@ function FunnelArrow() {
 
 export default function KhoDashboard() {
   const [tab_canh_bao, setTabCanhBao] = useState<"sap_het" | "ton_dong">("sap_het");
-  const [ma_quet, setMaQует] = useState<string | null>(null);
+  const [setMaQует] = useState<string | null>(null);
 
   // Tính toán từ MOCK_DON_HANG
   const luan_xuat = useMemo(() => ({

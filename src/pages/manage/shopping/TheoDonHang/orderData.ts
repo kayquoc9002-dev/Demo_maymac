@@ -986,7 +986,7 @@ export const MOCK_DON_HANG: DonHang[] = [
 // Giai đoạn 2: bỏ comment dòng fetch, xóa dòng return mock
 
 export const lay_danh_sach_don = async (
-  vai_tro: VaiTro
+  // vai_tro: VaiTro
 ): Promise<DonHang[]> => {
   // TODO: thay bằng API thật
   // const res = await fetch(`/api/don-hang?view=${vai_tro}`)
@@ -1075,7 +1075,7 @@ export const loc_don_theo_vai_tro = (
       ngay_cap_nhat:          don.ngay_cap_nhat,
       kenh_ban:               don.kenh_ban,
       khach_hang:             don.khach_hang,
-      san_pham: don.san_pham.map(({ vi_tri_ke, ...rest }) => rest), // bỏ vi_tri_ke
+      san_pham: don.san_pham.map(({...rest }) => rest), // bỏ vi_tri_ke
       trang_thai_don:         don.trang_thai_don,
       trang_thai_thanh_toan:  don.trang_thai_thanh_toan,
       phuong_thuc_tt:         don.phuong_thuc_tt,
@@ -1095,7 +1095,7 @@ export const loc_don_theo_vai_tro = (
   if (vai_tro === "sale") {
     const result: DonHangViewSale = {
       ...don,
-      san_pham: don.san_pham.map(({ gia_von, vi_tri_ke, ...rest }) => rest), // bỏ gia_von + vi_tri_ke
+      san_pham: don.san_pham.map(({...rest }) => rest), // bỏ gia_von + vi_tri_ke
     }
     return result
   }
